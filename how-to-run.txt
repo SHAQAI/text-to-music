@@ -1,0 +1,5 @@
+# To generate ABC file firstly change input_text.txt, then:
+python run_inference.py -num_tunes 3 -max_length 1024 -top_p 0.9 -temperature 1.0 -seed 0
+
+# From terminal (after - sudo apt install abcmidi):
+abc2midi output_tunes/Sat_31_Dec_2022_17_55_56.abc

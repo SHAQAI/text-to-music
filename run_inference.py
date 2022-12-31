@@ -48,6 +48,8 @@ def generate_abc(args):
     tunes = ""
     print(" OUTPUT TUNES ".center(60, "#"))
 
+
+
     for n_idx in range(num_tunes):
         print("\nX:"+str(n_idx+1)+"\n", end="")
         tunes += "X:"+str(n_idx+1)+"\n"
@@ -79,9 +81,12 @@ def generate_abc(args):
                 tunes += '\n'
                 break
 
-    timestamp = time.strftime("%a_%d_%b_%Y_%H_%M_%S", time.localtime()) 
-    with open('output_tunes/'+timestamp+'.abc', 'w') as f:
+    timestamp = time.strftime("%a_%d_%b_%Y_%H_%M_%S", time.localtime())
+    abc_file = os.path.join("output_tunes", timestamp+'.abc')
+    with open(abc_file, 'w') as f:
         f.write(unidecode(tunes))
+
+    return abc_file
 
 def get_args(parser):
 
@@ -93,8 +98,14 @@ def get_args(parser):
     args = parser.parse_args()
 
     return args
+
+def convert2midis(abc_file):
+    abc2midi_command = "abc2midi {}".format(abc_file)
+    os.system(abc2midi_command)
+    return True
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     args = get_args(parser)
-    generate_abc(args)
+    abc_file = generate_abc(args)
+    convert2midis(abc_file)
