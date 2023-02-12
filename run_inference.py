@@ -6,7 +6,7 @@ import argparse
 from unidecode import unidecode
 from samplings import top_p_sampling, temperature_sampling
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-
+ 
 def generate_abc(args):
 
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
